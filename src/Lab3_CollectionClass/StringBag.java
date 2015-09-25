@@ -5,39 +5,72 @@ package Lab3_CollectionClass;
  */
 public class StringBag
 {
-    /*  FIELDS  */
+    //region Description
     private String[] data; //the data being stored
     private int numElements; //the number of elements in the actual array
+    //endregion
 
 
 
     /* CONSTRUCTORS */
     public StringBag()
     {
-        //not implemented
+        //default is 10 slots, no elements
+        data = new String[10];
+        numElements = 0;
     }
 
     public StringBag(int initCapacity)
     {
-        //not implemented
+        data = new String[initCapacity];
+        numElements = 0;
     }
 
 
 
-    /*  PRIVATE METHODS */
-    private void enlargeArray()
+    // <editor-fold desc="PRIVATE METHODS">
+
+    /*
+        Enlarges the array to be twice its current size plus 1. (2 * length + 1)
+     */
+    private void enlargeArray() throws Exception
     {
-        //not implemented
+        //create a temporary array to hold the data while enlarging the original array
+        String[] tempArray = new String[numElements];
+
+        //copy the data into the temp array
+        for (int x = 0; x < numElements; x++)
+        {
+            tempArray[x] = data[x];
+        }
+
+        //enlarge the original array
+        data = new String[2 * data.length + 1];
+
+        //copy the data back
+        for (int x = 0; x < numElements; x++)
+        {
+            data[x] = tempArray[x];
+        }
     }
 
+    //</editor-fold>
 
 
-    /*  ACCESSORS   */
+
+    // <editor-fold desc="ACCESSORS">
+    /*
+        Returns the capacity of the current StringBag instance.
+        @returns The capacity of the current StringBag instance.
+     */
     public int getCapacity()
     {
-        //not implemented
+        return data.length;
     }
 
+    /*
+
+     */
     public int getSize()
     {
         //not implemented
@@ -53,6 +86,7 @@ public class StringBag
         //not implemented
     }
 
+    // </editor-fold>
 
 
 

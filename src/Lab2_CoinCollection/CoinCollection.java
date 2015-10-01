@@ -1,4 +1,4 @@
-package lab2;
+package Lab2_CoinCollection;
 
 /*
  * @author Chris Matthewson - G00192903

@@ -1,5 +1,5 @@
 
-package lab1;
+package Lab1_ChameleonClay;
 
 /*
  * @author Chris Matthewson - G00192903

@@ -1,4 +1,4 @@
-package lab1;
+package Lab1_ChameleonClay;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -146,7 +146,7 @@ public class ChameleonClayDriver
         int[] frequencies = new int[theClay.getPossibleColors().length + 1];
         
         //create an array list for finding the index of the color, add all colors
-        ArrayList<String> possibleColors = new ArrayList<>();
+        ArrayList<String> possibleColors = new ArrayList<String>();
         possibleColors.addAll(Arrays.asList(theClay.getPossibleColors()));
         
         //for loop to change the clay "numIterations" number of tmes

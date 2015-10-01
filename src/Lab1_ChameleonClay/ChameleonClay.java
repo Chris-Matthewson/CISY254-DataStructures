@@ -1,4 +1,4 @@
-package lab1;
+package Lab1_ChameleonClay;
 
 import java.util.Random;
 

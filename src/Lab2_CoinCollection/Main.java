@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab2;
+package Lab2_CoinCollection;
 
 /** 
  * @author Chris Matthewson - G00192903

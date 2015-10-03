@@ -84,7 +84,7 @@ public class MoneyGrab
         //next gather the spot to the left (down) if it exists
         if (player.getCurrentSpot() > 1)
         {
-            dollarsVacuumedLeft = (int)(spots[player.getCurrentSpot() - 1] * randomNumberGenerator.nextInt(spots.length););
+            dollarsVacuumedLeft = (int)(spots[player.getCurrentSpot() - 1] * randomNumberGenerator.nextInt(spots.length));
             player.gatherDollars(dollarsVacuumedLeft);
             spots[player.getCurrentSpot()] -= dollarsVacuumedLeft;
         }

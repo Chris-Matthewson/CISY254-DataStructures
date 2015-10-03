@@ -8,8 +8,7 @@ public class PlayerStatusModel
     private int numberOfJumpsTaken; //total jumps taken this game
     private int numberOfTimesGathered; //number of times the player has chosen to gather
     private int numberOfDollarsGathered; //total dollars gathered this game
-    private int numberOfTimesVacummed; //the number of times the player has used his awesome money vacuum
-    private int currentSpot; //current spot
+    private int numberOfTimesVacuumed; //the number of times the player has used his awesome money vacuum
 
     /*
         No Arg constructor. Defaults all values to 0
@@ -18,7 +17,6 @@ public class PlayerStatusModel
     {
         numberOfJumpsTaken = 0;
         numberOfDollarsGathered = 0;
-        currentSpot = 0;
     }
 
 
@@ -28,9 +26,11 @@ public class PlayerStatusModel
      */
     public PlayerStatusModel(PlayerStatusModel copyPlayer)
     {
-        numberOfJumpsTaken = copyPlayer.getNumberOfJumpsTaken();
-        numberOfDollarsGathered = copyPlayer.getNumberOfDollarsGathered();
-        currentSpot = copyPlayer.getCurrentSpot();
+        //copy the information
+        this.numberOfJumpsTaken = copyPlayer.getNumberOfJumpsTaken();
+        this.numberOfTimesGathered = copyPlayer.getNumberOfTimesGathered();
+        this.numberOfDollarsGathered = copyPlayer.getNumberOfDollarsGathered();
+        this.numberOfTimesVacuumed = copyPlayer.getNumberOfTimesVacuumed();
     }
 
 
@@ -54,13 +54,16 @@ public class PlayerStatusModel
     }
 
     /*
-        The current spot of the player.
-        @returns The current spot of the player.
+        Returns the number of times the player has gathered (not vacuumed)
+        @returns The number of times the player has gathered (not vacuumed)
      */
-    public int getCurrentSpot()
-    {
-        return currentSpot;
-    }
+    public int getNumberOfTimesGathered() {return numberOfTimesGathered;}
+
+    /*
+        Returns the number of times the player has vacuumed.
+        @returns The number of times the playe rhas vacuumed.
+     */
+    public int getNumberOfTimesVacuumed() {return numberOfTimesVacuumed;}
     //endregion
 
 
@@ -74,20 +77,23 @@ public class PlayerStatusModel
     }
 
     /*
-        Gathers dollars. Adds the passed number of dollars to the current number of dollars
+        Gathers dollars. Adds the passed number of dollars to the current number of dollars and increments the
+        appropriate "numberOfTimes" variable.
+        @param dollarsGathered The number of dollars gathered/vacuumed.
+        @param gathered True if gathered, false if vacuumed.
      */
-    public void gatherDollars(int dollarsGathered)
+    public void gatherDollars(int dollarsGathered, boolean gathered)
     {
-        numberOfDollarsGathered += dollarsGathered;
-    }
 
-    /*
-        Sets a new current spot for the player
-        @param currentSpot The new current spot for the player.
-     */
-    public void setCurrentSpot(int newCurrentSpot)
-    {
-        currentSpot = newCurrentSpot;
+        numberOfDollarsGathered += dollarsGathered;
+        if (gathered)
+        {
+            numberOfTimesGathered++;
+        }
+        else
+        {
+            numberOfTimesVacuumed++;
+        }
     }
     //endregion
 }

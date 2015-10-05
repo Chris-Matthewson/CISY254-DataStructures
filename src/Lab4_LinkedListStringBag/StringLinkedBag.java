@@ -1,7 +1,7 @@
 package Lab4_LinkedListStringBag;
 
 /**
- * Created by Chris on 10/5/15.
+ * Created by Chris Matthewson on 10/5/15.
  */
 public class StringLinkedBag
 {

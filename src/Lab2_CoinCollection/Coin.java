@@ -60,16 +60,18 @@ public class Coin
     */
     public String getFaceValueString()
     {
+        String name;
         switch((int)(faceValue * 100))
         {
-            case 1: return "Penny";
-            case 5: return "Nickel";
-            case 10: return "Dime";
-            case 25: return "Quarter";
-            case 50: return "Half Dollar";
-            case 100: return "Dollar";
-            default: return "Unknown";
+            case 1: name =  "Penny";
+            case 5: name = "Nickel";
+            case 10: name = "Dime";
+            case 25: name = "Quarter";
+            case 50: name = "Half Dollar";
+            case 100: name = "Dollar";
+            default: name = "Unknown";
         }
+        return name;
     }
     
     /*

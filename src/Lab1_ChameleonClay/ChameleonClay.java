@@ -42,6 +42,7 @@ public class ChameleonClay
     */
     public String getColor()
     {
+
         return colorNames[colorNumber];
     }
     

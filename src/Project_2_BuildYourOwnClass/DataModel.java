@@ -55,7 +55,7 @@ public class DataModel
 
     /*
         Returns the data contained in this Data Model.
-        @returns the data countained in this Data Model.
+        @returns the data contained in this Data Model.
      */
     public String getData()
     {
@@ -65,7 +65,7 @@ public class DataModel
     /*
         Returns whether or not the Data Model has a specified tag associated with it.
         @returns Whether or not the Data Model has a specified tag associated with it.
-        @param tag The tag to be checked for assocation with the data model.
+        @param tag The tag to be checked for association with the data model.
      */
     public boolean hasTag(String tag)
     {
@@ -139,8 +139,17 @@ public class DataModel
      */
     public String toString()
     {
+        String outputString = "";
 
-        return null;
+        outputString += data + "<";
+
+        for(int x = 0; x < tags.length - 1; x++)
+        {
+            outputString += tags[x] + ", ";
+        }
+
+        outputString += tags[tags.length] + ">";
+        return outputString;
     }
 
     /*

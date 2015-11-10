@@ -117,5 +117,41 @@ public class BTNode<T>
     {
         right = newRight;
     }
+
+    /**
+     * Traverses the tree and returns the rightmost data.
+     *
+     * @return The rightmost data.
+     */
+    public T getRightMostData()
+    {
+        if (right == null)
+        {
+            return data;
+        }
+        else
+        {
+            return right.getRightMostData();
+        }
+    }
+
+    /**
+     * Removes and returns the rightmost node.
+     *
+     * @return The rightmost node.
+     */
+    public BTNode<T> removeRightMostNode()
+    {
+        if (right == null)
+        {
+            return left;
+        }
+        else
+        { // A recursive call removes the leftmost node from my left subtree.
+            right = right.removeRightMostNode();
+            return this;
+        }
+
+    }
     //endregion
 }

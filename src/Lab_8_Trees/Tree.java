@@ -147,9 +147,10 @@ public class Tree<T extends Comparable<T>>
                 }
                 else
                 {
-                    cursor.setData(cursor.getLeft().getRightmostData());
-                    cursor.newLeft(cursor.getLeft().removeRightmost());
+                    cursor.setData(cursor.getLeft().getRightMostData());
+                    cursor.newLeft(cursor.getLeft().removeRightMostNode());
                 }
+                numItems--;
             }
             else if (comparison < 0) //go left
             {

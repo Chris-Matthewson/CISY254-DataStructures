@@ -112,14 +112,65 @@ public class Tree<T extends Comparable<T>>
             root.inOrderPrint();
         }
     }
+
+    /**
+     * Removes the specified element from the array.
+     *
+     * @param element The element to be removed.
+     * @return Whether or not the element was removed.
+     */
+    public boolean remove(T element)
+    {
+        boolean elementFound = false;
+        boolean keepSearching = true;
+
+        BTNode<T> parent = null;
+        BTNode<T> cursor = root;
+
+        while(keepSearching)
+        {
+            //compare the cursor data to the element to see where to go
+            int comparison = element.compareTo(cursor.getData());
+
+            if (comparison == 0) //match!
+            {
+                keepSearching = false;
+                elementFound = true;
+
+                if (parent == null && root.getLeft() == null)
+                {
+                    root = root.getRight();
+                }
+                else if (cursor.getLeft() == null && parent != null)
+                {
+                    parent.newLeft(cursor.getRight());
+                }
+                else
+                {
+                    cursor.setData(cursor.getLeft().getRightmostData());
+                    cursor.newLeft(cursor.getLeft().removeRightmost());
+                }
+            }
+            else if (comparison < 0) //go left
+            {
+                parent = cursor;
+                cursor = cursor.getLeft();
+
+            }
+            else //go right
+            {
+                parent = cursor;
+                cursor = cursor.getRight();
+            }
+
+            //check to see if we have reached the end
+            if (cursor == null)
+            {
+                keepSearching = false;
+            }
+        }
+
+        return elementFound;
+    }
     //endregion
 }
-
-/*
-
-If the Integer is equal to the argument then 0 is returned.
-
-If the Integer is less than the argument then -1 is returned.
-
-If the Integer is greater than the argument then 1 is returned.
- */

@@ -39,19 +39,8 @@ public class Lab0809TestTreeGeneric<E extends Comparable<E>>
         // show Tree after adds
         displayTree("\nDisplay Tree/Size after adds",myGenericTree);
 
-
-        /*
-        //  *******  remove prior line for Lab 9 testing    ******
-
-        //  LAB 9 stuff
-
         // attempt to remove 1 item AND display
         removeValue(testDataSingleItemRemove, myGenericTree);
-
-        // End of Lab 9 Stuff
-
-        //    *******  remove next line for Lab 9 testing    ******
-        */
 
 
     }
@@ -63,9 +52,6 @@ public class Lab0809TestTreeGeneric<E extends Comparable<E>>
         @param aValue the E to remove
         @param aTree the Tree<E> to delete from
     */
-
-    /*
-    //  *******  remove prior line for Lab 9 testing    ******
     private void removeValue(E aValue, Tree<E> aTree)
     {
         if (aTree.remove(aValue))
@@ -79,8 +65,6 @@ public class Lab0809TestTreeGeneric<E extends Comparable<E>>
 
         displayTree("Display Tree after trying to remove: "+aValue,aTree);
     }
-    //    *******  remove next line for Lab 9 testing    ******
-    */
 
     /**
         the displayTree method displays the Tree and its size

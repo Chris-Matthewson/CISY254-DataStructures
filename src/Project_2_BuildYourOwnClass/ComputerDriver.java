@@ -34,7 +34,7 @@ public class ComputerDriver
                     Computer c4 = new Computer("HP",2.1); //for testing equals false on name
                     Computer c5 = new Computer("dell", 2.2); //for testing equals false on speed
 
-                    //test equals
+                    //test whether two identical computers are equal
                     boolean equalsTrue = c1.equals(c2);
                     if (equalsTrue)
                     {
@@ -45,6 +45,7 @@ public class ComputerDriver
                         System.out.println("Test 1 failed.");
                     }
 
+                    //test computers with different capitalization
                     boolean equalsIgnoreCaseTrue = c1.equalsIgnoreCase(c3);
                     if (equalsIgnoreCaseTrue)
                     {
@@ -55,6 +56,7 @@ public class ComputerDriver
                         System.out.println("Test 2 failed.");
                     }
 
+                    //make sure that different model names come back as false
                     boolean equalsFalseName = c1.equalsIgnoreCase(c4);
                     if (equalsFalseName == false)
                     {
@@ -65,6 +67,7 @@ public class ComputerDriver
                         System.out.println("Test 3 failed.");
                     }
 
+                    //make sure that different speeds come back as false
                     boolean equalsFalseSpeed = c1.equalsIgnoreCase(c5);
                     if (equalsFalseSpeed == false)
                     {
@@ -75,7 +78,7 @@ public class ComputerDriver
                         System.out.println("Test 4 failed.");
                     }
 
-                    //test toString
+                    //test toString()
                     System.out.println(c1.toString());
                     break;
                 case "e":

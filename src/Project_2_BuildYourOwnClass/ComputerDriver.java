@@ -19,7 +19,7 @@ public class ComputerDriver
             System.out.println("T or TEST: Run automated tests on the computer class.");
             System.out.println("E or ENTER: Enter your own computer class.");
 
-            switch (scanner.next().toLowerCase())
+            switch (scanner.nextLine().toLowerCase())
             {
                 case "q":
                 case "quit":

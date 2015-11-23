@@ -1,4 +1,4 @@
-package Lab_8_Trees;
+package Lab08_09_Trees;
 /**
     Programmed by    Stephen Brower
     Inspired by      Michael Main

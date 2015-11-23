@@ -1,4 +1,4 @@
-package Lab_8_Trees;
+package Lab08_09_Trees;
 /**
    Programmed by    Stephen Brower
    Date Modified    2/10/2014 - added comments in JavaDoc format

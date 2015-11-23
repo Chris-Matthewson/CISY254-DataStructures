@@ -1,4 +1,4 @@
-package Lab_8_Trees;
+package Lab08_09_Trees;
 
 /**
  * Created by Chris Matthewson on 11/9/15.

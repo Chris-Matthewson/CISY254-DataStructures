@@ -3,8 +3,7 @@ package Project_2_BuildYourOwnClass;
 /**
  * Created by Chris on 10/10/15.
  */
-public class Computer
-{
+public class Computer implements Comparable<Computer> {
     //region FIELDS
     private String modelName; //the model name for the computer
     private double cpuSpeed; //the speed of the cpu in GHZ
@@ -123,6 +122,25 @@ public class Computer
     public boolean equalsIgnoreCase(Computer otherComputer)
     {
         return (otherComputer.getCpuSpeed() == cpuSpeed && otherComputer.getModelName().equalsIgnoreCase(getModelName()));
+    }
+
+    /**
+     * Compares two computer objects
+     *
+     * @param otherComputer The computer to be compared to this one.
+     * @return A comparison of the two objects.
+     */
+    public int compareTo(Computer otherComputer)
+    {
+        if (!(otherComputer instanceof Computer))
+            throw new ClassCastException("A Car object expected.");
+
+        if (cpuSpeed < otherComputer.getCpuSpeed())
+            return -1;
+        else if (cpuSpeed > otherComputer.getCpuSpeed())
+            return 1;
+        else
+            return 0;
     }
     //endregion
 }

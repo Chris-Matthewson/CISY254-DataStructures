@@ -127,6 +127,11 @@ public class Tree<T extends Comparable<T>>
         BTNode<T> parent = null;
         BTNode<T> cursor = root;
 
+        if (root == null)
+        {
+            return false;
+        }
+
         while(keepSearching)
         {
             //compare the cursor data to the element to see where to go

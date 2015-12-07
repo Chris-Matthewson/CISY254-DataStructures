@@ -178,5 +178,107 @@ public class Tree<T extends Comparable<T>>
 
         return elementFound;
     }
+
+    /**
+     * Checks to see if the given element exists within this tree.
+     *
+     * @param element The element.
+     * @return Whether or not the element is stored within this tree.
+     */
+    public boolean exists(T element)
+    {
+        boolean elementFound = false;
+        boolean keepSearching = true;
+
+        BTNode<T> parent = null;
+        BTNode<T> cursor = root;
+
+        if (root == null)
+        {
+            return false;
+        }
+
+        while(keepSearching)
+        {
+            //compare the cursor data to the element to see where to go
+            int comparison = element.compareTo(cursor.getData());
+
+            if (comparison == 0) //match!
+            {
+                keepSearching = false;
+                elementFound = true;
+            }
+            else if (comparison < 0) //go left
+            {
+                parent = cursor;
+                cursor = cursor.getLeft();
+
+            }
+            else //go right
+            {
+                parent = cursor;
+                cursor = cursor.getRight();
+            }
+
+            //check to see if we have reached the end
+            if (cursor == null)
+            {
+                keepSearching = false;
+            }
+        }
+
+        return elementFound;
+    }
+
+    /**
+     * Counts the number of occurences of the given element within this tree.
+     *
+     * @param element The element.
+     * @return The number of times this tree contains the element.
+     */
+    public int countOccurences(T element)
+    {
+        int occurences = 0;
+        boolean keepSearching = true;
+
+        BTNode<T> parent = null;
+        BTNode<T> cursor = root;
+
+        if (root == null)
+        {
+            return 0;
+        }
+
+        while(keepSearching)
+        {
+            //compare the cursor data to the element to see where to go
+            int comparison = element.compareTo(cursor.getData());
+
+            if (comparison == 0) //match!
+            {
+                keepSearching = false;
+                occurences++;
+            }
+            else if (comparison < 0) //go left
+            {
+                parent = cursor;
+                cursor = cursor.getLeft();
+
+            }
+            else //go right
+            {
+                parent = cursor;
+                cursor = cursor.getRight();
+            }
+
+            //check to see if we have reached the end
+            if (cursor == null)
+            {
+                keepSearching = false;
+            }
+        }
+
+        return occurences;
+    }
     //endregion
 }

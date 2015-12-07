@@ -1,9 +1,13 @@
 package Project_4_Graphs;
 
 import Lab10_Graphs.Graph;
+import Lab5_GenericCollectionClass.Car;
+
+import javax.net.ssl.SSLContext;
+import java.util.Scanner;
 
 /**
- * Created by Chris on 11/24/15.
+ * Created by Chris Matthewson on 11/24/15.
  */
 public class MansionDriver
 {
@@ -14,107 +18,179 @@ public class MansionDriver
      */
     public static void main(String[] args)
     {
-        //initialize the graph
-        Graph mansionGraph = new Graph(18);
+    /*
+            Mansion Layout
+            START
+            |
+            1 - 2 - 3   4 *key
+            |       |   |
+            5   6 - 7 - 8
+            |   |
+            9 - 10- 11- 12
+                |   |   |
+            13- 14- 15- 16
+                        |
+                        exit
+    */
 
-        //add all of the edges
-        mansionGraph.addEdge(0,1);
-        mansionGraph.addEdge(1,0);
+        //create the mansion
+        LocationNode nodeStart = new LocationNode("Entryway");
+        LocationNode node1 = new LocationNode("Hallway");
+        LocationNode node2 = new LocationNode("Hallway");
+        LocationNode node3 = new LocationNode("Grand Staircase");
+        LocationNode node4 = new LocationNode("Walk in Closet");
+        LocationNode node5 = new LocationNode("Servant's Quarters");
+        LocationNode node6 = new LocationNode("Large Hallway");
+        LocationNode node7 = new LocationNode("Large Hallway");
+        LocationNode node8 = new LocationNode("Master Bedroom");
+        LocationNode node9 = new LocationNode("Back Kitchen");
+        LocationNode node10 = new LocationNode("Front Kitchen");
+        LocationNode node11 = new LocationNode("Dining Room");
+        LocationNode node12 = new LocationNode("Sitting Room");
+        LocationNode node13 = new LocationNode("Basement");
+        LocationNode node14 = new LocationNode("Drawing Room");
+        LocationNode node15 = new LocationNode("Hallway");
+        LocationNode node16 = new LocationNode("Hallway");
+        LocationNode nodeExit = new LocationNode("Hidden Room");
 
-        mansionGraph.addEdge(1,2);
-        mansionGraph.addEdge(2,1);
+        //hide the key
+        node4.hideKey();
 
-        mansionGraph.addEdge(2,3);
-        mansionGraph.addEdge(3,2);
+        //set the connections
+        nodeStart.setNode(CardinalDirection.South, node1);
+        node1.setAllNodes(nodeStart, node5, node2, null);
+        node2.setAllNodes(null, null, node3, node2);
+        node3.setAllNodes(null, node7, null, node2);
+        node4.setAllNodes(null, node8, null, null);
+        node5.setAllNodes(node1, node9, null, null);
+        node6.setAllNodes(null, node10, node7, null);
+        node7.setAllNodes(node3, null, node8, node6);
+        node8.setAllNodes(node4, null, null, node7);
+        node9.setAllNodes(node5, null, node10, null);
+        node10.setAllNodes(node6, node14, node11, node9);
+        node11.setAllNodes(null, node15, node12, node10);
+        node12.setAllNodes(null, node16, null, node11);
+        node13.setAllNodes(null, null, node13, null);
+        node14.setAllNodes(node10, null, node15, node13);
+        node15.setAllNodes(node11, null, null, node14);
+        node16.setAllNodes(node12, nodeExit, null, null);
 
-        mansionGraph.addEdge(1,5);
-        mansionGraph.addEdge(5,1);
+        //set up player variables
+        LocationNode currentNode = nodeStart;
+        boolean keyFound = false;
+        int roomsExplored = 0;
 
-        mansionGraph.addEdge(3,7);
-        mansionGraph.addEdge(7,3);
+        //set up loop controls
+        Scanner inputScanner = new Scanner(System.in);
+        boolean exit = false;
 
-        mansionGraph.addEdge(4,8);
-        mansionGraph.addEdge(8,4);
+        //show the story
+        System.out.println("You find yourself in the empty mansion of Sir Pendleton IV. " +
+                "You have heard stories that Sir Pendleton IV has hidden his treasure somewhere" +
+                "in this mansion.");
+        System.out.println("Find the key, then find the treasure!");
+        System.out.println();
 
-        mansionGraph.addEdge(6,7);
-        mansionGraph.addEdge(7,6);
+        while (!exit)
+        {
+            System.out.println("You are in: " + currentNode.getDescription());
+            if (keyFound)
+            {
+                System.out.println("You have the key.");
+            }
+            System.out.print("You look around. You see you can travel ");
+            for (CardinalDirection direction : CardinalDirection.values())
+            {
+                if (currentNode.getNode(direction) != null)
+                {
+                    System.out.print(direction.toString() + ", ");
+                }
+            }
+            System.out.print("Search (R), Exit (E).");
+            System.out.println();
 
-        mansionGraph.addEdge(7,8);
-        mansionGraph.addEdge(8,7);
+            System.out.println("Which direction would you like to go?");
 
-        mansionGraph.addEdge(5,9);
-        mansionGraph.addEdge(9,5);
+            String input = inputScanner.next();
+            CardinalDirection travelDirection = null;
 
-        mansionGraph.addEdge(6,10);
-        mansionGraph.addEdge(10,6);
+            switch (input.toLowerCase())
+            {
+                case "a":
+                case "abandon":
+                    System.out.println("You give up searching for the gold Sir Pendleton IV's treasure is safe.");
+                    exit = true;
+                    travelDirection = null;
+                    break;
 
-        mansionGraph.addEdge(9,10);
-        mansionGraph.addEdge(10,9);
+                case "north":
+                case "n":
+                    travelDirection = CardinalDirection.North;
+                    break;
 
-        mansionGraph.addEdge(10,11);
-        mansionGraph.addEdge(11,10);
+                case "south":
+                case "s":
+                    travelDirection = CardinalDirection.South;
+                    break;
 
-        mansionGraph.addEdge(11,12);
-        mansionGraph.addEdge(12,11);
+                case "east":
+                case "e":
+                    travelDirection = CardinalDirection.East;
+                    break;
 
-        mansionGraph.addEdge(10,14);
-        mansionGraph.addEdge(14,10);
+                case "west":
+                case "w":
+                    travelDirection = CardinalDirection.West;
+                    break;
 
-        mansionGraph.addEdge(11,15);
-        mansionGraph.addEdge(15,11);
+                case "search":
+                case "r":
+                    travelDirection = null;
+                    if (currentNode.searchRoom())
+                    {
+                        System.out.println("You found the key in this room!");
+                    }
+                    else
+                    {
+                        System.out.println("The key was not found. Keep looking.");
+                    }
 
-        mansionGraph.addEdge(12,16);
-        mansionGraph.addEdge(16,12);
+                    keyFound = currentNode.searchRoom();
+                    break;
+            }
 
-        mansionGraph.addEdge(13,14);
-        mansionGraph.addEdge(14,13);
-
-        mansionGraph.addEdge(14,15);
-        mansionGraph.addEdge(15,14);
-
-        mansionGraph.addEdge(15,16);
-        mansionGraph.addEdge(16,15);
-
-        mansionGraph.addEdge(16,17);
-        mansionGraph.addEdge(17,16);
-
-        //set labels
-        mansionGraph.setLabel(0, "Entryway");
-        mansionGraph.setLabel(1, "Hallway");
-        mansionGraph.setLabel(2, "Hallway");
-        mansionGraph.setLabel(3, "Grand Staircase");
-        mansionGraph.setLabel(4, "Walk in closet");
-        mansionGraph.setLabel(5, "Servant's quarters");
-        mansionGraph.setLabel(6, "Large Hallway");
-        mansionGraph.setLabel(7, "Large Hallway");
-        mansionGraph.setLabel(8, "Master Bedroom");
-        mansionGraph.setLabel(9, "Back Kitchen");
-        mansionGraph.setLabel(10, "Font Kitchen");
-        mansionGraph.setLabel(11, "Dining Room");
-        mansionGraph.setLabel(12, "Sitting room");
-        mansionGraph.setLabel(13, "Basement");
-        mansionGraph.setLabel(14, "Drawing room");
-        mansionGraph.setLabel(15, "Hallway");
-        mansionGraph.setLabel(16, "Hallway");
-        mansionGraph.setLabel(17, "Hidden Room");
-
+            //now travel, if applicable.
+            if (travelDirection != null)
+            {
+                //if the node is null, they have entered an invalid direction
+                if (currentNode.getNode(travelDirection) == null)
+                {
+                    System.out.println("Invalid Direction");
+                }
+                else
+                {
+                    //check to see if we are at the end
+                    if (currentNode.getNode(travelDirection).getDescription() == "Hidden Room")
+                    {
+                        if (keyFound)
+                        {
+                            exit = true;
+                            System.out.println("YOU FOUND THE TREASURE!");
+                        }
+                        else
+                        {
+                            System.out.println("The door is locked.");
+                        }
+                    }
+                    else
+                    {
+                        //otherwise travel to the node
+                        currentNode = currentNode.getNode(travelDirection);
+                    }
+                }
+            }
+        }
     }
 }
 
-/*
-    Mansion Layout
 
-    START
-    |
-    1 - 2 - 3   4 *key
-    |       |   |
-    5   6 - 7 - 8
-    |   |
-    9 - 10- 11- 12
-        |   |   |
-    13- 14- 15- 16
-                |
-                exit
-
-
- */
